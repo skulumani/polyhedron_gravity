@@ -47,3 +47,10 @@ endif()
 include(${EIGEN3_USE_FILE})
 
 find_package(Threads REQUIRED)
+
+################################################################################
+# GOOGLE TESTING
+################################################################################
+add_subdirectory(${PROJECT_SOURCE_DIR}/extern/googletest/googletest)
+ENABLE_TESTING()
+include_directories(${gtest_SOURCE_DIR}/include ${gtest_SOURCE_DIR})
