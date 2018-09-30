@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.9.2)
 project( polyhedron_gravity C CXX )
 
-set(CMAKE_CXX_FLAGS "-lpthread -pthread")
+# set(CMAKE_CXX_FLAGS "-lpthread -pthread")
 # set(CMAKE_CXX_FLAGS_DEBUG "-g -Wall -Wextra -pedantic")
 set(CMAKE_CXX_FLAGS_DEBUG "-g")
 # Add -Weffc++ for all sorts of good errors to fix
@@ -54,3 +54,7 @@ find_package(Threads REQUIRED)
 add_subdirectory(${PROJECT_SOURCE_DIR}/extern/googletest/googletest)
 ENABLE_TESTING()
 include_directories(${gtest_SOURCE_DIR}/include ${gtest_SOURCE_DIR})
+
+# BUILD TARGETS
+include_directories(${PROJECT_SOURCE_DIR}/include)
+add_executable(main src/main.cpp)
