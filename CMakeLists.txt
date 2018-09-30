@@ -46,7 +46,7 @@ include(${EIGEN3_USE_FILE})
 # libigl setup
 option(LIBIGL_USE_STATIC_LIBRARY     "Use libigl as static library" OFF)
 option(LIBIGL_WITH_ANTTWEAKBAR       "Use AntTweakBar"    OFF)
-option(LIBIGL_WITH_CGAL              "Use CGAL"           ON)
+option(LIBIGL_WITH_CGAL              "Use CGAL"           OFF)
 option(LIBIGL_WITH_COMISO            "Use CoMiso"         OFF)
 option(LIBIGL_WITH_CORK              "Use Cork"           OFF)
 option(LIBIGL_WITH_EMBREE            "Use Embree"         OFF)
@@ -83,25 +83,33 @@ include_directories(${PROJECT_SOURCE_DIR}/include)
 ################################################################################
 ENABLE_TESTING()
 
-set(test_all_src 
+# set(test_all_src 
 #     tests/test_all.cpp
 #     tests/test_gtest.cpp
 #     tests/test_polyhedron.cpp
 #     tests/test_loader.cpp
 #     tests/test_mesh.cpp
-     tests/test_cgal.cpp
+# tests/test_cgal.cpp
 #     tests/test_libigl.cpp
 #     tests/test_potential.cpp
-     )
+# )
 # 
-add_executable(test_all ${test_all_src})
-target_link_libraries(test_all 
-    gtest 
-    cgal_cpp 
-#     fdcl_hdf5 
-    igl::core
-    )
-add_test(NAME test_all COMMAND test_all
+# add_executable(test_all ${test_all_src})
+# target_link_libraries(test_all 
+# gtest 
+# igl::core
+    #igl::cgal
+    #fdcl_hdf5 
+    # )
+    # add_test(NAME test_all COMMAND test_all
+    # WORKING_DIRECTORY ${PROJECT_SOURCE_DIR})
+
+add_executable(test_cgal tests/test_cgal.cpp tests/test_all.cpp
+    src/cgal.cpp
+    src/mesh.cpp
+    src/loader.cpp)
+target_link_libraries(test_cgal gtest igl::core)
+add_test(NAME test_cgal COMMAND test_cgal
         WORKING_DIRECTORY ${PROJECT_SOURCE_DIR})
 
 add_executable(test_libigl tests/test_libigl.cpp tests/test_all.cpp)
