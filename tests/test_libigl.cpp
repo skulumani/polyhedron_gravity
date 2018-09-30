@@ -27,7 +27,7 @@ TEST(TestLibigl, RowDotProduct) {
 TEST(TestLibigl, ReadOBJ) {
 
     Eigen::MatrixXd V, F;
-    igl::readOBJ("./integration/cube.obj", V, F);
+    igl::readOBJ("./tests/cube.obj", V, F);
     
     ASSERT_EQ(V.rows(), 8);
     ASSERT_EQ(F.rows(), 12);
@@ -40,7 +40,7 @@ TEST(TestLibigl, SortRows) {
     // Define n x 2 array
     Eigen::MatrixXd V;
     Eigen::MatrixXi F;
-    igl::readOBJ("./integration/cube.obj", V, F);
+    igl::readOBJ("./tests/cube.obj", V, F);
     
     Eigen::MatrixXi Fa(F.col(0)), Fb(F.col(1)), Fc(F.col(2));
     Eigen::MatrixXi e1_vertex_map(F.rows(), 2);
