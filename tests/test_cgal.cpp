@@ -73,9 +73,9 @@ TEST_F(TestRayCaster, NoIntersectionCube) {
     psource << 2, 0, 0;
     ptarget << 5, 0, 0;
     
-    Eigen::RowVector3d intersection = caster.castray(psource, ptarget);
+    Eigen::Vector3d intersection = caster.castray(psource, ptarget);
 
-    ASSERT_TRUE(intersection.isApprox(Eigen::RowVector3d::Zero()));
+    ASSERT_TRUE(intersection.isApprox(Eigen::Vector3d::Zero()));
 }
 
 TEST_F(TestRayCaster, ItokawaIntersection) {
@@ -84,15 +84,15 @@ TEST_F(TestRayCaster, ItokawaIntersection) {
     mesh = Loader::load(itokawa_file);
     RayCaster caster(mesh);
 
-    Eigen::RowVector3d psource(3), ptarget(3);
+    Eigen::Vector3d psource(3), ptarget(3);
     psource << 5, 0, 0;
     ptarget << 0, 0, 0;
 
-    Eigen::RowVector3d intersection = caster.castray(psource, ptarget);
-    Eigen::RowVector3d intersection_true(3);
+    Eigen::Vector3d intersection = caster.castray(psource, ptarget);
+    Eigen::Vector3d intersection_true(3);
     intersection_true << 0.29, 0, 0;
 
-    ASSERT_NEAR(intersection(0), intersection_true(0.29), 1e-2);
+    ASSERT_NEAR(intersection(0), intersection_true(0), 1e-2);
 
 }
 
@@ -101,7 +101,7 @@ TEST_F(TestRayCaster, InitMeshIntersection) {
     std::shared_ptr<MeshData> mesh = Loader::load("./data/shape_model/ITOKAWA/itokawa_low.obj");
 
     caster.init_mesh(mesh);
-    Eigen::RowVector3d psource(3), ptarget(3);
+    Eigen::Vector3d psource(3), ptarget(3);
     psource << 5, 0, 0;
     ptarget << -5, 0, 0;
 
@@ -113,7 +113,7 @@ TEST_F(TestRayCaster, InitMeshNoIntersection) {
     std::shared_ptr<MeshData> mesh = Loader::load("./data/shape_model/ITOKAWA/itokawa_low.obj");
 
     caster.init_mesh(mesh);
-    Eigen::RowVector3d psource(3), ptarget(3);
+    Eigen::Vector3d psource(3), ptarget(3);
     psource << 5, 0, 0;
     ptarget << 10, 0, 0;
 

@@ -75,7 +75,7 @@ include_directories(${gtest_SOURCE_DIR}/include ${gtest_SOURCE_DIR})
 ################################################################################
 # BUILD TARGETS
 ################################################################################
-# include_directories(${PROJECT_SOURCE_DIR}/include)
+include_directories(${PROJECT_SOURCE_DIR}/include)
 # add_executable(main src/main.cpp)
 
 ################################################################################
@@ -83,28 +83,28 @@ include_directories(${gtest_SOURCE_DIR}/include ${gtest_SOURCE_DIR})
 ################################################################################
 ENABLE_TESTING()
 
-# set(test_all_src 
+set(test_all_src 
 #     tests/test_all.cpp
 #     tests/test_gtest.cpp
 #     tests/test_polyhedron.cpp
 #     tests/test_loader.cpp
 #     tests/test_mesh.cpp
-#     tests/test_cgal.cpp
+     tests/test_cgal.cpp
 #     tests/test_libigl.cpp
 #     tests/test_potential.cpp
-#     )
+     )
 # 
-# add_executable(test_all ${test_all_src})
-# target_link_libraries(test_all 
-#     gtest 
-#     cgal_cpp 
+add_executable(test_all ${test_all_src})
+target_link_libraries(test_all 
+    gtest 
+    cgal_cpp 
 #     fdcl_hdf5 
-#     igl::core
-#     )
-# add_test(NAME test_all COMMAND test_all
-#         WORKING_DIRECTORY ${PROJECT_SOURCE_DIR})
+    igl::core
+    )
+add_test(NAME test_all COMMAND test_all
+        WORKING_DIRECTORY ${PROJECT_SOURCE_DIR})
 
 add_executable(test_libigl tests/test_libigl.cpp tests/test_all.cpp)
-target_link_libraries(test_libigl gtest igl::core igl::cgal)
+target_link_libraries(test_libigl gtest igl::core )
 add_test(NAME test_libigl COMMAND test_libigl
 WORKING_DIRECTORY ${PROJECT_SOURCE_DIR})
