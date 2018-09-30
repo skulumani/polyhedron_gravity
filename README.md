@@ -1,9 +1,5 @@
 ~~~
-brew install llvm
-~~~
-
-~~~
-brew install cgal
+brew install cgal cmake libomp
 ~~~
 
 CMake > 3.12
