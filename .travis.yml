@@ -1,0 +1,44 @@
+language: generic
+sudo: required
+python: 
+    - 3.5.4
+# cache: apt
+addons:
+    apt:
+      sources:
+        - ubuntu-toolchain-r-test
+cache:
+    directories:
+        - $HOME/anaconda3
+branches:
+    only:
+        - master
+before_install:
+    - bash ./utilities/travis_setup.sh
+    - echo ". /home/travis/anaconda3/etc/profile.d/conda.sh" >> ~/.bashrc
+    - export PATH="$HOME/anaconda3/bin:$PATH"
+    - hash -r 
+    - source $HOME/anaconda3/bin/activate
+    - conda activate asteroid
+    - pip install --user cpp-coveralls
+install:
+    - echo "Now try building FDCL-HDF5"
+    - cd extern/fdcl-hdf5 && mkdir build && cd build && cmake ..
+    - cd ../../../
+    # - make && make install
+    # - cd ../../
+    # - mkdir build && cd build && cmake -DCOVERAGE=1 ..
+    # - make -j4 all
+script:
+    # - cd ..
+    # - ./bin/test_all
+    # - pytest --cov-config .coveragerc --cov=dynamics --cov=point_cloud --cov=eom_comparison --cov=landing  tests/test_raycaster.py tests/test_attitude.py tests/test_controller.py tests/test_simply.py
+    # - travis_wait pytest tests/test_asteroid.py
+    # - pytest --verbose --ignore=tests/test_cgal.py --ignore=tests/test_pcl.py --ignore=tests/test_numba.py --ignore=tests/test_opencv.py
+    # - pytest --verbose tests/test_distance_to_edges.py
+    # - pytest --verbose tests/test_distance_to_faces.py
+    # - pytest --verbose tests/test_distance_to_vertices.py
+    # - pytest --verbose tests/test_distance_to_mesh.py
+after_success:
+    - coveralls --root .. -E ".*external.*" -E ".*CMakeFiles.*" -E ".*tests/.*.cpp.*"
+
