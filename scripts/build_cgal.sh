@@ -25,6 +25,7 @@ if [[ "$OSTYPE" == "linux-gnu" ]]; then
     sudo apt-get install libgl1 libstdc++6 libgcc1 libc6 libntl-dev 
 elif [[ "$OSTYPE" == "darwin"* ]]; then
         # Mac OSX
+        echo "Install Mac dependencies"
 fi
 # install CGAL for Python and build it from source for C++
 echo "Downloading ${CGAL_VER}"
