@@ -4,7 +4,7 @@
 #include "gtest/gtest.h"
 
 TEST(LoaderTest, OBJString) {
-    std::string input_filename("./integration/cube.obj");
+    std::string input_filename("./tests/data/cube.obj");
     std::shared_ptr<MeshData> mesh;
     mesh = Loader::load(input_filename);
     ASSERT_EQ(mesh->get_faces().rows(), 12);

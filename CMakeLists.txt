@@ -46,7 +46,7 @@ include(${EIGEN3_USE_FILE})
 # libigl setup
 option(LIBIGL_USE_STATIC_LIBRARY     "Use libigl as static library" OFF)
 option(LIBIGL_WITH_ANTTWEAKBAR       "Use AntTweakBar"    OFF)
-option(LIBIGL_WITH_CGAL              "Use CGAL"           OFF)
+option(LIBIGL_WITH_CGAL              "Use CGAL"           ON)
 option(LIBIGL_WITH_COMISO            "Use CoMiso"         OFF)
 option(LIBIGL_WITH_CORK              "Use Cork"           OFF)
 option(LIBIGL_WITH_EMBREE            "Use Embree"         OFF)
@@ -120,4 +120,12 @@ add_test(NAME test_libigl COMMAND test_libigl
 add_executable(test_gtest tests/test_gtest.cpp tests/test_all.cpp)
 target_link_libraries(test_gtest gtest)
 add_test(NAME test_gtest COMMAND test_gtest
+    WORKING_DIRECTORY ${PROJECT_SOURCE_DIR})
+
+add_executable(test_loader tests/test_loader.cpp tests/test_all.cpp
+    tests/test_loader.cpp
+    src/mesh.cpp
+    src/loader.cpp)
+target_link_libraries(test_loader gtest igl::core)
+add_test(NAME test_loader COMMAND test_loader
     WORKING_DIRECTORY ${PROJECT_SOURCE_DIR})
