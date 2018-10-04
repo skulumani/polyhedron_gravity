@@ -123,9 +123,15 @@ add_test(NAME test_gtest COMMAND test_gtest
     WORKING_DIRECTORY ${PROJECT_SOURCE_DIR})
 
 add_executable(test_loader tests/test_loader.cpp tests/test_all.cpp
-    tests/test_loader.cpp
     src/mesh.cpp
     src/loader.cpp)
 target_link_libraries(test_loader gtest igl::core)
 add_test(NAME test_loader COMMAND test_loader
+    WORKING_DIRECTORY ${PROJECT_SOURCE_DIR})
+
+add_executable(test_mesh tests/test_mesh.cpp tests/test_all.cpp
+    src/mesh.cpp
+    src/loader.cpp)
+target_link_libraries(test_mesh gtest igl::core)
+add_test(NAME test_mesh COMMAND test_mesh
     WORKING_DIRECTORY ${PROJECT_SOURCE_DIR})
