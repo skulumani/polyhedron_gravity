@@ -57,8 +57,8 @@ class TestRayCaster: public ::testing::Test {
   }
 
   // Objects declared here can be used by all tests in the test case for Foo.
-    const std::string input_file = "./integration/cube.obj";
-    const std::string itokawa_file = "./data/shape_model/ITOKAWA/itokawa_low.obj";
+    const std::string input_file = "./tests/data/cube.obj";
+    const std::string itokawa_file = "./tests/data/itokawa_low.obj";
     Eigen::Matrix<double, 8, 3> Ve_true;
     Eigen::Matrix<int, 12, 3> Fe_true;
 };
@@ -98,7 +98,7 @@ TEST_F(TestRayCaster, ItokawaIntersection) {
 
 TEST_F(TestRayCaster, InitMeshIntersection) {
     RayCaster caster;
-    std::shared_ptr<MeshData> mesh = Loader::load("./data/shape_model/ITOKAWA/itokawa_low.obj");
+    std::shared_ptr<MeshData> mesh = Loader::load(itokawa_file);
 
     caster.init_mesh(mesh);
     Eigen::Vector3d psource(3), ptarget(3);
@@ -110,7 +110,7 @@ TEST_F(TestRayCaster, InitMeshIntersection) {
 
 TEST_F(TestRayCaster, InitMeshNoIntersection) {
     RayCaster caster;
-    std::shared_ptr<MeshData> mesh = Loader::load("./data/shape_model/ITOKAWA/itokawa_low.obj");
+    std::shared_ptr<MeshData> mesh = Loader::load(itokawa_file);
 
     caster.init_mesh(mesh);
     Eigen::Vector3d psource(3), ptarget(3);
