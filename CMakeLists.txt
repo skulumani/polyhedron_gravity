@@ -115,4 +115,9 @@ add_test(NAME test_cgal COMMAND test_cgal
 add_executable(test_libigl tests/test_libigl.cpp tests/test_all.cpp)
 target_link_libraries(test_libigl gtest igl::core )
 add_test(NAME test_libigl COMMAND test_libigl
-WORKING_DIRECTORY ${PROJECT_SOURCE_DIR})
+    WORKING_DIRECTORY ${PROJECT_SOURCE_DIR})
+
+add_executable(test_gtest tests/test_gtest.cpp tests/test_all.cpp)
+target_link_libraries(test_gtest gtest)
+add_test(NAME test_gtest COMMAND test_gtest
+    WORKING_DIRECTORY ${PROJECT_SOURCE_DIR})
