@@ -1,5 +1,6 @@
 #!/bin/bash
 
+TEMP_DIR="$(mktemp -d)"
 if [[ ! "$TEMP_DIR" || ! -d "$TEMP_DIR" ]]; then
 	echo "Could not create temp dir"
 	exit 1
@@ -19,7 +20,6 @@ trap cleanup EXIT
 # 3.10.2 has an issue with the Finding boost 1.66
 VERSION=3.11
 BUILD="3"
-TEMP_DIR="$(mktemp -d)"
 
 echo "This will download and install the latest stable version of CMAKE"
 echo "First we'll remove cmake"
