@@ -2,15 +2,21 @@
 brew install cgal cmake libomp
 ~~~
 
-CMake > 3.12
+## Requirements
 
-Eigen > 3.3.5
+1. CMake > 3.12
+
+2. Eigen > 3.3.5
+
+3. CGAL > 4.12-1
+
+4. Boost > 1.68
 
 ~~~
 git submodule update --init --recursive 
 ~~~
 
-CMake don't search for matlab in libigl
+CMake doesn't search for matlab in libigl
 
 Might need to edit 
 
