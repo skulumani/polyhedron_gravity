@@ -23,3 +23,10 @@ Might need to edit
 ~~~
 extern/libigl/shared/cmake/libigl.cmake
 ~~~
+
+## TODO
+
+* Remove dependency on libigl
+* Bundle CGAL requirements with app (similar to how igl works)
+* Remove boost dependency (probably easy)
+*
