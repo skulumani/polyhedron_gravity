@@ -135,3 +135,9 @@ add_executable(test_mesh tests/test_mesh.cpp tests/test_all.cpp
 target_link_libraries(test_mesh gtest igl::core)
 add_test(NAME test_mesh COMMAND test_mesh
     WORKING_DIRECTORY ${PROJECT_SOURCE_DIR})
+
+add_executable(test_polyhedron tests/test_polyhedron.cpp tests/test_all.cpp
+    src/polyhedron.cpp)
+target_link_libraries(test_polyhedron gtest)
+add_test(NAME test_polyhedron COMMAND test_polyhedron
+    WORKING_DIRECTORY ${PROJECT_SOURCE_DIR})
