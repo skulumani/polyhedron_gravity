@@ -87,3 +87,4 @@ TEST_F(TestPolyhedron, PolyhedronFaces) {
 
 // TODO Test other overloads of the polyhedron volume function
 // TODO Add test for a sphere from surface mesher (polyhedron compared to analytical sphere volume)
+// TODO Analytical potential and acceleration compared to a cube of various sizes and density
