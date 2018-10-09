@@ -28,4 +28,8 @@ class Cube {
         void potential(const Eigen::Ref<const Eigen::Vector3d>& state);
 
         
+        double get_potential( void ) { return mU; }
+        Eigen::Vector3d get_acceleration( void ) { return mU_grad; }
+        double get_grav_constant( void ) const { return G; }
+        double get_sigma( void ) const { return sigma; } 
 };
