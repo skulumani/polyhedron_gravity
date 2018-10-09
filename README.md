@@ -29,4 +29,4 @@ extern/libigl/shared/cmake/libigl.cmake
 * Remove dependency on libigl
 * Bundle CGAL requirements with app (similar to how igl works)
 * Remove boost dependency (probably easy)
-*
+* Analytical verification of potential https://arxiv.org/pdf/1206.3857.pdf
