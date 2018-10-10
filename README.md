@@ -30,3 +30,19 @@ extern/libigl/shared/cmake/libigl.cmake
 * Bundle CGAL requirements with app (similar to how igl works)
 * Remove boost dependency (probably easy)
 * Analytical verification of potential https://arxiv.org/pdf/1206.3857.pdf
+
+~~~
+/ The attracting shape is a cube of dimensions 1 x 1 x 1 m of density rho = 1e6 kg/m^3
+	// The analytic potential and acceleration at (1,2,3) (m) in the shape model's barycentric frame is computed
+	// Assumes that G = 6.67408e-11 m^3 / (kg * s ^2)
+
+		// Queried point for pgm validation
+		arma::vec p4 = {1, 2, 3};
+
+		arma::vec acc_true = {
+			-1.273782722739791e-06,
+			-2.548008881415967e-06,
+			-3.823026510474731e-06
+		};
+		double pot_true = 0.26726619638669064 * arma::datum::G * density;
+~~~
