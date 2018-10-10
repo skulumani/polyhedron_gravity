@@ -26,7 +26,7 @@ class Cube {
         Cube(const double& a_in, const double& b_in, const double& c_in);
         
         void potential(const Eigen::Ref<const Eigen::Vector3d>& state);
-
+        void acceleration(const Eigen::Ref<const Eigen::Vector3d>& state);
         
         double get_potential( void ) { return mU; }
         Eigen::Vector3d get_acceleration( void ) { return mU_grad; }
