@@ -4,6 +4,8 @@
     @author Shankar Kulumani
     @version 9 October 2018
 */
+#ifndef CUBE_H
+#define CUBE_H
 
 #include <Eigen/Dense>
 
@@ -15,7 +17,8 @@ class Cube {
 
         double mU;
         Eigen::Vector3d mU_grad;
-
+        
+        Eigen::Vector3d axes;
     public:
 
         // constructor
@@ -33,3 +36,4 @@ class Cube {
         double get_grav_constant( void ) const { return G; }
         double get_sigma( void ) const { return sigma; } 
 };
+#endif
