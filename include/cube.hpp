@@ -12,17 +12,17 @@
 class Cube {
     private:
         // member variables to hold the potential
-        double G = 6.673e-20; /**< Gravitational constant - km^3/kg/sec^2 */
-        double sigma; /**< Density - kg/km^3 */
+        double mG = 6.673e-20; /**< Gravitational constant - km^3/kg/sec^2 */
+        double msigma = 1 ; /**< Density - kg/km^3 */
 
         double mU;
         Eigen::Vector3d mU_grad;
+        Eigen::Vector3d maxes;
         
-        Eigen::Vector3d axes;
     public:
 
         // constructor
-        Cube( void ) {};
+        Cube( void );
         virtual ~Cube( void ) {};
 
         // other constructors
@@ -33,7 +33,13 @@ class Cube {
         
         double get_potential( void ) { return mU; }
         Eigen::Vector3d get_acceleration( void ) { return mU_grad; }
-        double get_grav_constant( void ) const { return G; }
-        double get_sigma( void ) const { return sigma; } 
+
+        void set_grav_constant( const double& G_in ) { this->mG = G_in; }
+        void set_sigma( const double& sigma_in ) { this->msigma = sigma_in; }
+        void set_axes(const Eigen::Ref<const Eigen::Vector3d>& axes_in) { this->maxes = axes_in; }
+
+        double get_grav_constant( void ) const { return mG; }
+        double get_sigma( void ) const { return msigma; } 
+        Eigen::Vector3d get_axes( void) const { return maxes; }
 };
 #endif

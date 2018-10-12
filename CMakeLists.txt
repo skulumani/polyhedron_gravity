@@ -76,8 +76,8 @@ include_directories(${gtest_SOURCE_DIR}/include ${gtest_SOURCE_DIR})
 # BUILD TARGETS
 ################################################################################
 include_directories(${PROJECT_SOURCE_DIR}/include)
-# add_executable(main src/main.cpp)
-
+add_executable(main src/main.cpp src/cube.cpp)
+# target_link_libraries(main
 ################################################################################
 # Testing example
 ################################################################################
