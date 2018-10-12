@@ -7,7 +7,7 @@
 int main() {
 
     Eigen::Vector3d axes(2, 2, 2);
-    Eigen::Vector3d state(10000000, 0 , 0);
+    Eigen::Vector3d state(100, 0 , 0);
 
     Cube cube_analytical;
     
