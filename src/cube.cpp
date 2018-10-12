@@ -27,7 +27,7 @@ void Cube::potential(const Eigen::Ref<const Eigen::Vector3d>& state) {
     double zmax = maxes[2] - state[2];
     double zmin = - maxes[2] - state[2];
     
-    double rmax = sqrt(pow(zmax,2.0) + pow(ymax,2.0) + pow(xmax, 2.0));
+    double rmax = sqrt(pow(zmax, 2.0) + pow(ymax, 2.0) + pow(xmax, 2.0));
     double rmin = sqrt(pow(zmin, 2.0) + pow(ymin, 2.0) + pow(xmin, 2.0));
 
     double U_max = 

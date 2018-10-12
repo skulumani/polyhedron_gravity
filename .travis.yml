@@ -8,7 +8,7 @@ addons:
       sources:
         - ubuntu-toolchain-r-test
 before_install:
-    - bash ./scripts/build_travis.sh
+    - bash ./scripts/build_travis.sh &>/dev/null
     - pip install --user cpp-coveralls
 install:       
     - hash -r
