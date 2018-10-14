@@ -96,6 +96,6 @@ set(test_all_src
     src/polyhedron.cpp)
 
 add_executable(test_all ${test_all_src})
-target_link_libraries(test_all gtest igl::core ${CGAL_LIBRARIES} ${CGAL_3RD_PARTY_LIBRARIES})
+target_link_libraries(test_all gtest igl::core ${CGAL_LIBRARIES} ${CGAL_3RD_PARTY_LIBRARIES} ${CGAL_LIBS})
 add_test(NAME test_all COMMAND test_all
     WORKING_DIRECTORY ${PROJECT_SOURCE_DIR})
