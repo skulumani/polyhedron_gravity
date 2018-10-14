@@ -11,11 +11,11 @@ addons:
       packages:
         - cmake
         - build-essential
-        - libcgal-dev
+        # - libcgal-dev
         - libeigen3-dev
         - libboost-all-dev
 before_install:
-    # - travis_wait 60 bash ./scripts/build_travis.sh &>/dev/null
+    - travis_wait 60 bash ./scripts/build_travis.sh
     - pip install --user cpp-coveralls
 install:       
     - echo "Now try to build the module"
