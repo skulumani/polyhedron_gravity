@@ -12,13 +12,12 @@ before_install:
     - sudo apt-get install -y cmake build-essential libcgal-dev libeigen3-dev libboost-all-dev
     - pip install --user cpp-coveralls
 install:       
-    # - hash -r
     - echo "Now try to build the module"
-    # - mkdir build 
-    # - cd build
-    # - cmake -DCOVERAGE=1 ..
-    # - make all
+    - mkdir build 
+    - cd build
+    - cmake -DCOVERAGE=1 ..
+    - make all
 script:
-    # - ./bin/test_gtest
+    - ./bin/test_gtest
 after_success:
     - coveralls --root .. -E ".*external.*" -E ".*CMakeFiles.*" -E ".*tests/.*.cpp.*" -e extern
