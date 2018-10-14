@@ -24,7 +24,7 @@ find_package(OpenMP REQUIRED)
 
 # CGAL Setup
 set(ENV{CGAL_DIR} /usr/local/Cellar/cgal/)
-find_package(CGAL 4.12 REQUIRED COMPONENTS)
+find_package(CGAL REQUIRED COMPONENTS)
 if (NOT CGAL_FOUND)
 message(STATUS "This project requires the CGAL Library and will not compile")
 return()
@@ -34,7 +34,7 @@ include( ${CGAL_USE_FILE} )
 message(STATUS "CGAL Lib: ${CGAL_LIBRARIES}")
 
 # Eigen setup
-find_package(Eigen3 3.3.4 REQUIRED)
+find_package(Eigen3 REQUIRED)
 if (NOT Eigen3_FOUND)
 message(STATUS "This project requires Eigen3 and will not be compiled.")
 return()
