@@ -5,11 +5,17 @@ sudo: true
 #         - master
 addons:
     apt:
+      update: true
       sources:
         - ubuntu-toolchain-r-test
+      packages:
+        - cmake
+        - build-essential
+        - libcgal-dev
+        - libeigen3-dev
+        - libboost-all-dev
 before_install:
     # - travis_wait 60 bash ./scripts/build_travis.sh &>/dev/null
-    - sudo apt-get install -y cmake build-essential libcgal-dev libeigen3-dev libboost-all-dev
     - pip install --user cpp-coveralls
 install:       
     - echo "Now try to build the module"
