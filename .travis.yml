@@ -22,7 +22,7 @@ install:
     - mkdir build 
     - cd build
     - cmake -DCOVERAGE=1 ..
-    - make all
+    - make -j4 all
 script:
     - cd ..
     - ./bin/test_all
