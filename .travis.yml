@@ -24,6 +24,6 @@ install:
     - cmake -DCOVERAGE=1 ..
     - make all
 script:
-    - ./bin/test_gtest
+    - ./bin/test_all
 after_success:
     - coveralls --root .. -E ".*external.*" -E ".*CMakeFiles.*" -E ".*tests/.*.cpp.*" -e extern
