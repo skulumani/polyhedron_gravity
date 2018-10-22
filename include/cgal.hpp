@@ -9,7 +9,16 @@
 #include <memory>
 #include <cmath>
 
-// Use the dD spatial searching package for finding nearest vertices/primitives
+// TODO Use the dD spatial searching package for finding nearest vertices/primitives
+/** @class MeshDistance
+
+    @brief Find the distance from a point to a MeshData
+    
+    This function uses the KD Tree to find the closest vertex to a given point.
+
+    @author Shankar Kulumani
+    @version 20181022
+*/
 class MeshDistance {
     public:
         MeshDistance(std::shared_ptr<MeshData> mesh_in);
