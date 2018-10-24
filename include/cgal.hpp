@@ -23,8 +23,29 @@ class MeshDistance {
     public:
         MeshDistance(std::shared_ptr<MeshData> mesh_in);
         
+        /** @fn void update_mesh(std::shared_ptr<MeshData> mesh_in)
+                
+            Updates the internal member attributes with a new mesh
+
+            @param MeshData input mesh to update object with
+            @returns void
+
+            @author Shankar Kulumani
+            @version 20181023
+
+        */
         void update_mesh(std::shared_ptr<MeshData> mesh_in);
-        // funciton to compute distance from pt to mesh and return minimum distance, and primitive
+        /** @fn int k_nearest_neighbor(const Eigen::Ref<const Eigen::Vector3d>& pt, const int &K)
+                
+            Compute the minimum distance and primitive to the mesh
+
+            @param Eigen::Vector3d Test point in mesh body frame
+            @returns int Success flag
+            @return int K - index to closest primitive
+
+            @author Shankar Kulumani
+            @version 20181023
+        */
         int k_nearest_neighbor(const Eigen::Ref<const Eigen::Vector3d>& pt, const int &K);
 
     private:
