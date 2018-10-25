@@ -53,6 +53,13 @@ class MeshDistance {
         Vertex_point_pmap vppmap;
 };
 
+/** @class RayCaster
+
+    @brief Computes intersections of rays with a mesh
+    
+    @author Shankar Kulumani
+    @version 20181024
+*/
 class RayCaster {
     public:
         RayCaster( void );
