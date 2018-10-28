@@ -9,7 +9,6 @@
 #include <memory>
 #include <cmath>
 
-// TODO Use the dD spatial searching package for finding nearest vertices/primitives
 /** @class MeshDistance
 
     @brief Find the distance from a point to a MeshData

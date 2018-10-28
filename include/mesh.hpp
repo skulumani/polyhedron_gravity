@@ -7,7 +7,15 @@
 
 #include <vector>
 
-// This data holds the polyhedorn and mesh
+/** @class MeshData
+
+    @brief Class to hold a polyhedron mesh.
+    
+    This is a wrapper of the Surface_mesh from CGAL and is the foundation used for the asteroid polyhedron potential model.
+
+    @author Shankar Kulumani
+    @version 28 October 2018
+*/
 class MeshData {
     public:
         // constructor
@@ -17,8 +25,7 @@ class MeshData {
         // other constructors
         MeshData(const Eigen::Ref<const Eigen::MatrixXd> &V,
                 const Eigen::Ref<const Eigen::MatrixXi> &F);
-        // get and set the data here
-       
+
         /** @fn void update_mesh(const Eigen::Ref<const Eigen::MatrxiXd>& V, const Eigen::Ref<const Eigen::MatrixXi>& F)
                 
             Completely update the mesh with new vertices and faces. This
@@ -34,34 +41,143 @@ class MeshData {
         void update_mesh(const Eigen::Ref<const Eigen::MatrixXd> &V, 
                 const Eigen::Ref<const Eigen::MatrixXi> &F);
 
-        // Surface mesh shit
-        Mesh surface_mesh;
     
-        // L Edge factor (function of current position)
+        // TODO Move these two functions to the Asteroid class
+        /** @fn build_edge_factor(const Eigen::Ref<const Eigen::Vector3d>& pos)
+                
+            Build the per edge factor L for the polyhedron potential model
+
+            @param pos Position of test point
+            @returns bool Success if true
+
+            @author Shankar Kulumani
+            @version 28 October 2018
+        */
         bool build_edge_factor(const Eigen::Ref<const Eigen::Vector3d>& pos);
-        // w face factor (function of the current position)
+
+        /** @fn build_face_factor(const Eigen::Ref<const Eigen::Vctor3d>& pos)
+                
+            Build the per face factor w for the polyhedron potential model
+
+            @param pos Position of test point
+            @returns bool success if true
+
+            @author Shankar Kulumani
+            @version 28 October 2018
+        */
         bool build_face_factor(const Eigen::Ref<const Eigen::Vector3d>& pos);
 
-        // GETTERS
-        // get a specific face/vertex using an index like access operator
-        //
-        // convert surface mesh to eigen arrays
-        Eigen::Matrix<double, Eigen::Dynamic, 3> get_verts( void ) const;
-        Eigen::Matrix<int, Eigen::Dynamic, 3> get_faces( void ) const;
+        /** @fn get_verts(void)
+                
+            Return the vertices of the mesh as an Eigen array
 
+            @returns vertices Eigen arrays for the mesh nx3
+
+            @author Shankar Kulumani
+            @version 28 October 2018
+        */
+        Eigen::Matrix<double, Eigen::Dynamic, 3> get_verts( void ) const;
+
+        /** @fn Eigen::Matrix<int, Eigen::Dynamic, 3> get_faces( void) const
+                
+            Return the faces of the mesh as an eigen array
+
+            @returns faces Eigen array for the faces of the mesh nx3
+
+            @author Shankar Kulumani
+            @version 28 October 2018
+        */
+        Eigen::Matrix<int, Eigen::Dynamic, 3> get_faces( void ) const;
+        
+        /** @fn std::size_t number_of_vertices( void ) const
+                
+            Return the number of vertices of the mesh
+
+            @returns num_vert Return the number of vertices
+
+            @author Shankar Kulumani
+            @version 28 October 2018
+        */
         std::size_t number_of_vertices( void ) const;
+
+        /** @fn std::size_t number_of_edges( void ) const
+                
+            Return number of edges of the mesh
+
+            @returns num_edge Number of edges
+
+            @author Shankar Kulumani
+            @version 28 October 2018
+        */
         std::size_t number_of_edges( void ) const;
+
+        /** @fn std::size_t number_of_faces( void ) const
+                
+            Return number of faces of the mesh
+
+            @returns num_face Number of faces
+
+            @author Shankar Kulumani
+            @version 28 October 2018
+        */
         std::size_t number_of_faces( void ) const;
+        
+        /** @fn std::size_t number_of_halfedges( void ) const
+                
+            Return number of halfedges of the mesh
+
+            @returns num_half Number of halfedges
+
+            @author Shankar Kulumani
+            @version 28 October 2018
+        */
         std::size_t number_of_halfedges( void ) const;
         
         // Range types for iteration
+        /** @fn Mesh::Vertex_range vertices( void ) const
+                
+            Return vertex range for iteration
+
+            @returns Vertex_range Range of vertices of the mesh
+
+            @author Shankar Kulumani
+            @version 28 October 2018
+        */
         Mesh::Vertex_range vertices( void ) const;
+
+        /** @fn Mesh::Face_range faces( void ) const
+                
+            Return face range for iteration
+
+            @returns Face_range Range of faces of the mesh
+
+            @author Shankar Kulumani
+            @version 28 October 2018
+        */
         Mesh::Face_range faces( void ) const;
+
+        /** @fn Mesh::Edge_range edges( void ) const
+                
+            Return edge range for iteration
+
+            @returns Edge_range Range of edges of the mesh
+
+            @author Shankar Kulumani
+            @version 28 October 2018
+        */
         Mesh::Edge_range edges( void ) const;
+
+        /** @fn Mesh::Halfedge_range halfedges( void ) const
+                
+            Return halfedge range for iteration
+
+            @returns Halfedge_range Range of halfedges of the mesh
+
+            @author Shankar Kulumani
+            @version 28 October 2018
+        */
         Mesh::Halfedge_range halfedges( void ) const;
         
-        /* std::shared_ptr<Mesh> get_mesh( void ) const { return std::make_shared<Mesh>(surface_mesh) }; */
-    
         /** @fn bool refine_faces(const std::vector<Face_index>& face_vec,
          *              std::vector<Face_index>& new_faces,
          *              std::vector<Vertex_index>& new_vertices,
@@ -86,7 +202,19 @@ class MeshData {
                 std::vector<Face_index>& new_faces,
                 std::vector<Vertex_index>& new_vertices,
                 const int& density = 4.0);
-         
+        
+        /** @fn remesh_faces(const std::vector<Face_index>& face_vec, const double& target_edge_length, const int& number_of_iterations)
+                
+            Perform isotropic remeshing of the desired faces of the mesh.
+
+            @param face_vec Vector of faces to remesh
+            @param target_edge_length Target length of the new edges
+            @param number_of_iterations Iterations for isotropic_remeshing
+            @returns bool True if success
+
+            @author Shankar Kulumani
+            @version 28 October 2018
+        */
         bool remesh_faces(const std::vector<Face_index>& face_vec,
                 const double& target_edge_length,
                 const int& number_of_iterations=3);
@@ -106,18 +234,67 @@ class MeshData {
         std::vector<Face_index> faces_in_fov(
                 const Eigen::Ref<const Eigen::Vector3d>& pos,
                 const double& max_fov=0.52);
+
+        /** @fn std::vector<Face_index> vertices_in_fov(
+         *      const Eigen::Ref<const Eigen::Vector3d>& pos,
+         *      const double& max_fov=0.52)
+                
+            Find the vertices that are within a FOV of the current position
+
+            @param pos Position of spacecraft in the asteroid fixed frame
+            @returns vertex_vec Vector of vertex indices
+
+            @author Shankar Kulumani
+            @version 28 October 2018
+        */
         std::vector<Vertex_index> vertices_in_fov(
                 const Eigen::Ref<const Eigen::Vector3d>& pos,
                 const double& max_fov=0.52);
+        /** @fn Eigen::Matrix<double, Eigen::Dynamic, 3> refine_faces_in_view( 
+         *          const Eigen::Ref<const Eigen::Vector3d>& pos,
+         *          const double& max_fov=0.52)
+                
+            Use the refinement function for the faces within a certain angle of the position
 
+            @param pos Eigen vector for position
+            @param max_fov Maximum cosine(angle) for faces to refine
+            @returns Face_centers get the center of the new faces in view
+
+            @author Shankar Kulumani
+            @version 28 October 2018
+        */
         Eigen::Matrix<double, Eigen::Dynamic, 3> refine_faces_in_view(
                 const Eigen::Ref<const Eigen::Vector3d>& pos,
                 const double& max_fov=0.52);
+
+        /** @fn bool remesh_faces_in_view(const Eigen::Ref<const Eigen::Vector3d>& pos,
+         *      const double& max_fov=0.52, const double& edge_length=0.01)
+                
+            Use isotropic remeshing to remesh the faces that are in view of the point
+
+            @param pos Position vector
+            @param max_fov Field of view to use to compute the faces in view
+            @param edge_length Target edge length for the new faces
+            @returns bool Success if true
+
+            @author Shankar Kulumani
+            @version 28 October 2018
+        */
         bool remesh_faces_in_view(
                 const Eigen::Ref<const Eigen::Vector3d>& pos,
                 const double& max_fov=0.52,
                 const double& edge_length=0.01);
 
+        /** @fn Eigen::RowVector3d get_vertex(const Index& index) const
+                
+            Get the desired vertex given an index
+
+            @param Index Index of vertex to get
+            @returns vertex Eigen array of the specific vertex
+
+            @author Shankar Kulumani
+            @version 28 October 2018
+        */
         template<typename Index>
         Eigen::RowVector3d get_vertex(const Index& index) const;
         
@@ -149,12 +326,16 @@ class MeshData {
         */
         template<typename Index>
         Eigen::RowVector3i get_face_vertices(const Index& index) const;
+
         // Getters for the property maps
         template<typename Index>
         Eigen::Vector3d get_face_normal(const Index& fd) const;
+
         template<typename Index>
         Eigen::Vector3d get_face_center(const Index& fd) const;
+
         Eigen::Matrix<double, Eigen::Dynamic, 3> get_face_center(const std::vector<Face_index>& face_vec) const;
+
         Eigen::Matrix<double, Eigen::Dynamic, 3> get_all_face_center( void ) const; 
         
         /** @fn Eigen::VectorXd get_all_face_area( void ) const
@@ -186,8 +367,20 @@ class MeshData {
 
         double get_sum_face_factor( void ) const;
         
+        Mesh surface_mesh; /**< Surface_mesh object */
     private:
+        
+        /** @fn build_surface_mesh(const Eigen::Ref<const Eigen::MatrixXd>& V, const Eigen::Ref<const Eigen::MatrixXi>& F)
+                
+            Build the mesh and associated properties using the vertices and faces.
 
+            @param V Input vertices nx3
+            @param F Input faces mx3
+            @returns none
+
+            @author Shankar Kulumani
+            @version 28 October 2018
+        */
         void build_surface_mesh(
                 const Eigen::Ref<const Eigen::MatrixXd>& V,
                 const Eigen::Ref<const Eigen::MatrixXi>& F);
@@ -344,7 +537,6 @@ class MeshData {
         std::vector<Edge_index> get_edges_with_vertex(const Vertex_index& vd) const;
 
 
-        bool remesh_faces(const std::vector<Face_index>& face_vec);
 };
 
 

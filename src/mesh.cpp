@@ -13,7 +13,8 @@
 #include <cmath>
 
 // TODO COMPLETELY REMOVE POLYHEDRON
-// Member methods
+
+// MeshData Member methods
 MeshData::MeshData(const Eigen::Ref<const Eigen::MatrixXd> &V,
         const Eigen::Ref<const Eigen::MatrixXi> &F) {
     this->build_surface_mesh(V, F);
