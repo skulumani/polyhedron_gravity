@@ -1,3 +1,16 @@
+[![Build Status](https://travis-ci.org/skulumani/polyhedron_gravity.svg?branch=master)](https://travis-ci.org/skulumani/polyhedron_gravity)
+
+## Polyhedron Gravity
+
+This project defines the gravitational potential of a polyhedron asteroid. 
+It implements the method derived by Werner and Scheeres.
+
+* Exterior gravitation of a polyhedron derived and compared with harmonic and mascon gravitation representations of asteroid 4769 Castalia 
+* The gravitational potential of a homogeneous polyhedron or don't cut corners
+
+
+## Installation
+
 ~~~
 brew install cgal cmake libomp
 ~~~
