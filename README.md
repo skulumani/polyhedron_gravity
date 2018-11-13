@@ -1,6 +1,6 @@
 [![Build Status](https://travis-ci.org/skulumani/polyhedron_gravity.svg?branch=master)](https://travis-ci.org/skulumani/polyhedron_gravity)
 
-## Polyhedron Gravity
+## Polyhedron Potential Model in C++
 
 This project defines the gravitational potential of a polyhedron asteroid. 
 It implements the method derived by Werner and Scheeres.
@@ -8,34 +8,55 @@ It implements the method derived by Werner and Scheeres.
 * Exterior gravitation of a polyhedron derived and compared with harmonic and mascon gravitation representations of asteroid 4769 Castalia 
 * The gravitational potential of a homogeneous polyhedron or don't cut corners
 
+## Dependencies
+
+1. CMake > 3.12
+2. Eigen > 3.3.5
+3. CGAL > 4.12-1
+4. Boost > 1.68
 
 ## Installation
 
-~~~
-brew install cgal cmake libomp
-~~~
+1. Install dependencies on MacOS
 
-## Requirements
+    ~~~
+    brew install cgal cmake libomp
+    ~~~
 
-1. CMake > 3.12
+    or for linux
 
-2. Eigen > 3.3.5
+    ~~~
+    bash ./utilities/build_cmake.sh
+    bash ./utilities/build_boost.sh
+    bash ./utilities/build_cgal.sh
+    bash ./utilities/build_eigen.sh
+    ~~~
 
-3. CGAL > 4.12-1
+2. Update the submodules
 
-4. Boost > 1.68
+    ~~~
+    git submodule update --init --recursive 
+    ~~~
 
-~~~
-git submodule update --init --recursive 
-~~~
+3. LibIGL setup (sometimes)
 
-CMake doesn't search for matlab in libigl
+    CMake doesn't search for matlab in libigl
 
-Might need to edit 
+    Might need to edit 
 
-~~~
-extern/libigl/shared/cmake/libigl.cmake
-~~~
+    ~~~
+    extern/libigl/shared/cmake/libigl.cmake
+    ~~~
+
+## References
+
+* SCHEERES, DJ, KHUSHALANI, B y WERNER, Robert A. "Estimating asteroid density distributions from shape and gravity information". Planetary and Space Science. 2000
+
+* WERNER, Robert A. "The Gravitational Potential of a Homogeneous Polyhedron or Don't Cut Corners". Celestial Mechanics and Dynamical Astronomy. 1994
+
+* WERNER, Robert A. "Spherical Harmonic Coefficients for the Potential of a Constant-density Polyhedron". Computers & Geosciences. 1997, vol 23
+
+* WERNER, Robert A y SCHEERES, Daniel J. "Exterior Gravitation of a Polyhedron Derived and Compared with Harmonic and Mascon Gravitation Representations of Asteroid 4769 Castalia". Celestial Mechanics and Dynamical Astronomy. 1996, vol 65
 
 ## TODO
 
