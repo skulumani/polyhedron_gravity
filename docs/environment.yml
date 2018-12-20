@@ -1,0 +1,7 @@
+name: polyhedron_potential-docs
+
+channels:
+  - conda-forge
+
+dependencies:
+  - breathe
