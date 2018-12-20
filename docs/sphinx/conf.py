@@ -88,7 +88,7 @@ highlight_language = 'c++'
 # If true, `todo` and `todoList` produce output, else they produce nothing.
 todo_include_todos = False
 
-breathe_projects = { 'polyhedron_potential': '../xml' }
+breathe_projects = { 'polyhedron_gravity': '../xml' }
 templates_path = ['_templates']
 
 # -- Options for HTML output ----------------------------------------------
