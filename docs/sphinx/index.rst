@@ -10,8 +10,6 @@ Welcome to astro's documentation!
    :maxdepth: 2
    :caption: Contents:
     
-   about_me.rst
-   documentation.rst
 
 Indices and tables
 ==================
