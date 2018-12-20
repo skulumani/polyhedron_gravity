@@ -7,13 +7,17 @@ Welcome to the documentation!
 =================================
 
 .. toctree::
-   :maxdepth: 2
-   :caption: Contents:
-    
+   :caption: INSTALLATION
+   :maxdepth: 1
 
-.. doxygenclass:: MeshData
-   :project: polyhedron_gravity
-   :members:
+   installation.rst
+
+.. toctree::
+   :caption: API REFERENCE
+   :maxdepth: 2
+
+   api/mesh.rst
+
 
 Indices and tables
 ==================
