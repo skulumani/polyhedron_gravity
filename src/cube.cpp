@@ -31,12 +31,12 @@ void Cube::potential(const Eigen::Ref<const Eigen::Vector3d>& state) {
     double rmin = sqrt(pow(zmin, 2.0) + pow(ymin, 2.0) + pow(xmin, 2.0));
 
     double U_max = 
-          ymax * zmax * log(xmax + rmax) - pow(xmax, 2.0) / 2 * atan(ymax * zmax / (xmax * rmax)) 
-        + xmax * zmax * log(ymax + rmax) - pow(ymax, 2.0) / 2 * atan(xmax * zmax / (ymax * rmax)) 
-        + xmax * ymax * log(zmax + rmax) - pow(zmax, 2.0) / 2 * atan(xmax * ymax / (zmax * rmax));
+          ymax * zmax * log(xmax + rmax) - pow(xmax, 2.0) / 2.0 * atan2(ymax * zmax, xmax * rmax) 
+        + xmax * zmax * log(ymax + rmax) - pow(ymax, 2.0) / 2.0 * atan2(xmax * zmax, ymax * rmax) 
+        + xmax * ymax * log(zmax + rmax) - pow(zmax, 2.0) / 2.0 * atan2(xmax * ymax, zmax * rmax);
     double U_min = 
-          ymin * zmin * log(xmin + rmin) - pow(xmin, 2.0) / 2 * atan(ymin * zmin / (xmin * rmin)) 
-        + xmin * zmin * log(ymin + rmin) - pow(ymin, 2.0) / 2 * atan(xmin * zmin / (ymin * rmin)) 
-        + xmin * ymin * log(zmin + rmin) - pow(zmin, 2.0) / 2 * atan(xmin * ymin / (zmin * rmin));
+          ymin * zmin * log(xmin + rmin) - pow(xmin, 2.0) / 2.0 * atan2(ymin * zmin, xmin * rmin) 
+        + xmin * zmin * log(ymin + rmin) - pow(ymin, 2.0) / 2.0 * atan2(xmin * zmin, ymin * rmin) 
+        + xmin * ymin * log(zmin + rmin) - pow(zmin, 2.0) / 2.0 * atan2(xmin * ymin, zmin * rmin);
     mU = - mG * msigma * (U_max - U_min);
 }
