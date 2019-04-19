@@ -38,5 +38,5 @@ void Cube::potential(const Eigen::Ref<const Eigen::Vector3d>& state) {
           ymin * zmin * log(xmin + rmin) - pow(xmin, 2.0) / 2.0 * atan2(ymin * zmin, xmin * rmin) 
         + xmin * zmin * log(ymin + rmin) - pow(ymin, 2.0) / 2.0 * atan2(xmin * zmin, ymin * rmin) 
         + xmin * ymin * log(zmin + rmin) - pow(zmin, 2.0) / 2.0 * atan2(xmin * ymin, zmin * rmin);
-    mU = - mG * msigma * (U_max - U_min);
+    mU =  mG * msigma * (U_max - U_min);
 }
